@@ -1,17 +1,21 @@
-interface apb_intf(input logic PCLK);
+interface apb_intf(input logic pclk);
   
-  logic transfer;
-  logic PRESETn; 
-  logic READ_WRITE; // to check the mode of transfer
-  logic [8:0] apb_write_paddr; // address where data has to be written
-  logic [8:0] apb_read_paddr; // address from where data has to be read
-  logic [7:0] apb_write_data; // data that has to be written
-  logic [7:0] apb_read_data_out; // data that has to be read
-  logic  PSLVERR; // error bit
+  logic presetn;                 // PRESETn is the reset signal and is active-LOW. PRESETn is normally connected directly to the system bus reset signal.	
+  logic [`ADDR_WIDTH-1:0] paddr; // address where data has to be written
+	logic [`DATA_SIZE-1:0] pwdata; // Write data for the slave
+	logic [`DATA_SIZE-1:0] prdata; // Read data from the slave
+	logic pwrite;                  // to check the mode of transfer
+  logic penable;                 // to check the mode of transferBLE indicates the second and subsequent cycles of an APB transfer.	
+  logic [`PSEL_WIDTH-1:0]psel;   // Gives the slave to be chosen
+
+  // Slave side signals
+  logic pslverr;                 // error bit
+	logic pready;                  // PREADY is used to extend an APB transfer by the completer	
+	
   // driver clocking block
-  clocking drv_cb@(posedge PCLK);
+  clocking drv_cb@(posedge pclk);
     default input #0 output #0;
-    output READ_WRITE, apb_write_paddr, apb_read_paddr, apb_write_data,transfer,PRESETn;
+    output paddr, pwdata, paddr, pwrite, penable, ;
     
   endclocking
   
