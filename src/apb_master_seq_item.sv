@@ -1,6 +1,5 @@
-class apb_seq_item extends uvm_sequence_item;
+class apb_master_seq_item extends uvm_sequence_item;
   
-  rand logic transfer;
   rand logic PRESETn;
   rand logic [8:0] apb_write_paddr;
   rand logic [8:0] apb_read_paddr;
