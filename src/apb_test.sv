@@ -1,103 +1,75 @@
-class apb_test extends uvm_test;
+//--------------------------------------------------------------------------------------------
+// Class: apb_base_test
+//  Base test has the testcase scenarios for the tesbench
+//  Env and Config are created in apb_base_test
+//  Sequences are created and started in the test
+//--------------------------------------------------------------------------------------------
+class apb_base_test extends uvm_test;
+  `uvm_component_utils(apb_base_test)
   
-  `uvm_component_utils(apb_test)
-  
-  apb_sequence seq;
+  //Variable: env_h
+  //Declaring a handle for env
   apb_env env;
-  
-  function new(string name = "apb_test",uvm_component parent);
-    super.new(name,parent);
-  endfunction
-  
-  virtual function void build_phase(uvm_phase phase);
-    super.build_phase(phase);
-    env = apb_env::type_id::create("env",this);
-    //seq = apb_sequence::type_id::create("seq",this);
-  endfunction
-  
-  virtual task run_phase(uvm_phase phase);
-    phase.raise_objection(this);
-    seq = apb_sequence::type_id::create("seq");
-    seq.start(env.act_agt.seqr);
-    #30;
-    phase.drop_objection(this);    
-  endtask
-  
-endclass
 
-class write_read_test extends apb_test;
-  
-  `uvm_component_utils(write_read_test)  
-  
-  function new(string name = "write_read_test",uvm_component parent);
-    super.new(name,parent);
-  endfunction 
-  
-  task run_phase(uvm_phase phase);
-    write_read_seq seq_wr;
-    phase.raise_objection(this);
-    seq_wr = write_read_seq::type_id::create("seq_wr");
-    seq_wr.start(env.act_agt.seqr);
-    #30;
-    phase.drop_objection(this);    
-  endtask
-  
-endclass
+  //-------------------------------------------------------
+  // Externally defined Tasks and Functions
+  //-------------------------------------------------------
+  extern function new(string name = "apb_base_test", uvm_component parent = null);
+  extern virtual function void build_phase(uvm_phase phase);
+  extern virtual function void end_of_elaboration_phase(uvm_phase phase);
+  extern virtual task run_phase(uvm_phase phase);
 
-class transfer_off_test extends apb_test;
+endclass : apb_base_test
 
-  `uvm_component_utils(transfer_off_test)
+//--------------------------------------------------------------------------------------------
+// Construct: new
+//
+// Parameters:
+//  name - apb_base_test
+//  parent - parent under which this component is created
+//--------------------------------------------------------------------------------------------
+function apb_base_test::new(string name = "apb_base_test",uvm_component parent = null);
+  super.new(name, parent);
+endfunction : new
 
-  function new(string name = "transfer_off_test",uvm_component parent);
-    super.new(name,parent);
-  endfunction
+//--------------------------------------------------------------------------------------------
+// Function: build_phase
+//  Creates env and required configuarions
+//
+// Parameters:
+//  phase - uvm phase
+//--------------------------------------------------------------------------------------------
+function void apb_base_test::build_phase(uvm_phase phase);
+  super.build_phase(phase);
+  env = apb_env::type_id::create("env",this);
+endfunction : build_phase
 
-  task run_phase(uvm_phase phase);
-    transfer_off seq_to;
-    phase.raise_objection(this);
-    seq_to = transfer_off::type_id::create("seq_to");
-    seq_to.start(env.act_agt.seqr);
-    #30;
-    phase.drop_objection(this);
-  endtask
+//--------------------------------------------------------------------------------------------
+// Function: end_of_elaboration_phase
+//  Used to print topology
+//
+// Parameters:
+//  phase - uvm phase
+//--------------------------------------------------------------------------------------------
+function void apb_base_test::end_of_elaboration_phase(uvm_phase phase);
+  super.end_of_elaboration_phase(phase);
+  uvm_top.print_topology();
+  uvm_test_done.set_drain_time(this,1000ns);
+endfunction  : end_of_elaboration_phase
 
-endclass
+//--------------------------------------------------------------------------------------------
+// Task: run_phase
+//  Used to give 100ns delay to complete the run_phase.
+//
+// Parameters:
+//  phase - uvm phase
+//--------------------------------------------------------------------------------------------
+task apb_base_test::run_phase(uvm_phase phase);
+  phase.raise_objection(this);
+  super.run_phase(phase);
+	seq = apb_base_sequence::type_id::create("seq");
+	seq.start(env.act_agt.seqr);
+  phase.drop_objection(this);
+endtask : run_phase
 
-
-class error_write_test extends apb_test;
-  `uvm_component_utils(error_write_test)
-  error_write seq;
-
-  function new(string name = "error_write_test", uvm_component parent = null);
-    super.new(name, parent);
-  endfunction: new
-
-  task run_phase(uvm_phase phase);
-    phase.raise_objection(this);
-    seq = error_write::type_id::create("seq", this);
-    seq.start(env.act_agt.seqr);
-    phase.drop_objection(this);
-  endtask
-
-endclass : error_write_test
-
-//class regression_test
-
-
-class regression_test extends apb_test;
-  `uvm_component_utils(regression_test)
-  regression_seq seq_reg;
-
-  function new(string name = "regression_test", uvm_component parent = null);
-    super.new(name, parent);
-  endfunction: new
-
-  task run_phase(uvm_phase phase);
-    phase.raise_objection(this);
-    seq_reg = regression_seq::type_id::create("seq", this);
-    seq_reg.start(env.act_agt.seqr);
-    phase.drop_objection(this);
-  endtask
-
-endclass 
 

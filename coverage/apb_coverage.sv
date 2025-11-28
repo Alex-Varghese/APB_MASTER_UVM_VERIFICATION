@@ -1,95 +1,92 @@
-`uvm_analysis_imp_decl(_active_mon_cg) // declaring analysis imp with write method _active_mon_cg
+class apb_master_coverage extends uvm_subscriber #(apb_master_seq_item);
+  `uvm_component_utils(apb_master_coverage)
 
-`uvm_analysis_imp_decl(_passive_mon_cg) // declaring analysis imp with write method _passive_mon_cg
+	//Define the coverage group and bins
+	covergroup cg;
+	//Address range bins
+	coverpoint tr.PADDR{
+      bins addr_min = {[0:0]};
+  	  bins addr_max = {[32:32]};
+  	  bins addr_range = {[1:32]};
+  	  bins addr_invalid = {[32:$]};
+	  }
 
-class apb_coverage extends uvm_component;
-  
-  `uvm_component_utils(apb_coverage) // factory registeration
-  uvm_analysis_imp_active_mon_cg#(apb_seq_item, apb_coverage) a_mon_cov_imp;
-  uvm_analysis_imp_passive_mon_cg#(apb_seq_item, apb_coverage)p_mon_cov_imp;
-  
-  apb_seq_item mon_inputs; // seq_items for the active monitor transactions
-  apb_seq_item mon_outputs; // seq_items for the passive monitor transactions
-  
-  //covergroup for active monitor
-  
-  covergroup act_mon_cgrp;
-    //TRANSFER_CP : coverpoint transfer;
-    
-    //PRESETn_CP : coverpoint PRESETn;
-    
-    READ_WRITE_CP : coverpoint mon_inputs.READ_WRITE{
-      bins write_bins = {1};
-      bins read_bins = {0};
-    }
-    W_PADDR_CP :coverpoint mon_inputs.apb_write_paddr [7:0] iff(mon_inputs.READ_WRITE == 0){
-      bins write_address_bin = {[0:255]};
-    }
-    
-    R_PADDR_CP : coverpoint mon_inputs.apb_read_paddr [7:0] iff(mon_inputs.READ_WRITE == 1) {
-      bins read_address_bin = {[0:255]};
-    }
-    
-    WRITE_DATA_CP : coverpoint mon_inputs.apb_write_data iff(mon_inputs.READ_WRITE == 0) {
-      bins data = {[0:255]};    
-    }
-    
-    W_SLAVE_CP : coverpoint mon_inputs.apb_write_paddr[8] iff(mon_inputs.READ_WRITE == 0) {
-      bins slave1 = {0};
-      bins slave2 = {1};
-    }
-    
-    R_SLAVE_CP : coverpoint mon_inputs.apb_read_paddr[8] iff(mon_inputs.READ_WRITE == 1) {
-      bins slave1 = {0};
-      bins slave2 = {1};
-    }   
+	//Data width bins
+	coverpoint tr.PRDATA{
+      bins rdata_min = {[0:0]};
+	    bins rdata_max = {32'hFFFFFFFF};
+	    bins rdata_8bit_range = {[0:(2**8)-1]};
+	    bins rdata_16bit_range = {[(2**8):(2**16)-1]};
+      bins rdata_24bit_range = {[(2**16):(2**24)-1]};
+      bins rdata_32bit_range = {[(2**24):$]};
+	  }
+
+	coverpoint tr.PWDATA{
+      bins wdata_min = {[0:0]};
+	 	  bins wdata_max = {32'hFFFFFFFF};
+	  	bins wdata_8bit_range = {[0:(2**8)-1]};
+		  bins wdata_16bit_range = {[(2**8):(2**16)-1]};
+      bins wdata_24bit_range = {[(2**16):(2**24)-1]};
+      bins wdata_32bit_range = {[(2**24):$]};
+	  }
+
+
+	//	Read and Write bins
+	coverpoint tr.PWRITE{
+      bins write = {1};
+		  bins read  = {0};
+	  }
+
+	//Error condition bins
+	coverpoint tr.PSLVERR{
+     bins pslverr_assert = {1};
+		 bins pslverr_not_assert = {0};
+	 }
+
+	//Ready condition bins
+	coverpoint tr.PREADY{
+     bins pready_assert = {1};
+	 	 bins pready_not_assert = {0};
+	 }
+
+
+	//Psel and Penable condition bins
+	coverpoint tr.PSEL{
+     bins psel_assert = {1};
+	 }
+	coverpoint tr.PENABLE{
+     bins penable_assert = {1};
+	 }
+
+	//Cross coverage 
+	cross  tr.PWRITE, tr.PENABLE;
+
   endgroup
-  
-  //passive monitor covergroup
-  covergroup passive_mon_cgrp;
-    READ_DATA_OUT_CP : coverpoint mon_outputs.apb_read_data_out {
-      bins read_data = {[0:255]};
-    }
-    PSLVERR_CP : coverpoint mon_outputs.PSLVERR {
-      bins err = {1};
-      bins err_n = {0};
-    }
-  endgroup
-  
-  //new constructor
-  function new(string name = "apb_coverage", uvm_component parent);
-    super.new(name,parent);
-    a_mon_cov_imp = new("a_mon_cov_imp",this);
-    p_mon_cov_imp = new("p_mon_cov_imp",this);
-    act_mon_cgrp = new();
-    passive_mon_cgrp = new();    
+
+  function new(string name ="apb_coverage_model", uvm_component parent);
+  	super.new(name,parent);
+  	cg =new;
   endfunction
-  
-  function void write_active_mon_cg(apb_seq_item req);
-    mon_inputs = req;
-    act_mon_cgrp.sample();
+
+  //Build Phase
+  function void build_phase(uvm_phase phase);
+  super.build_phase(phase);
+    cm_export_write = new("cm_export_write", this);
+    cm_export_read = new("cm_export_read", this);
   endfunction
-  
-  function void write_passive_mon_cg(apb_seq_item req);
-    mon_outputs = req;
-    passive_mon_cgrp.sample();
+
+  virtual function void write(apb_transaction tr);
+  endfunction 
+
+  virtual function void write_W(apb_transaction tr1);
+  	tr =tr1;
+   	`uvm_info("COVERAGE",$sformatf("Got write transaction for coverage"),UVM_LOW)
+  	cg.sample();
+  endfunction 
+
+  virtual function void write_R(apb_transaction tr2);
+  	tr = tr2;
+  	`uvm_info("COVERAGE",$sformatf("Got read transaction for coverage"),UVM_LOW)
+  	cg.sample();
   endfunction
-  
-  function void report_phase(uvm_phase phase);
-    super.report_phase(phase);
-    $display("------------------------- INPUT-COVERAGE ------------------------------");
-    $display("");
-    $display(" !!!! INPUT COVERAGE = %0.2f %% !!!!",act_mon_cgrp.get_coverage());
-    $display("");
-    $display("------------------------- INPUT-COVERAGE ------------------------------");
-    $display("");
-    $display("------------------------- OUPTUT-COVERAGE ------------------------------");
-    $display("");
-    $display(" !!!! OUTPUT COVERAGE = %0.2f %% !!!!",passive_mon_cgrp.get_coverage());
-    $display("");
-    $display("------------------------- OUTPUT-COVERAGE ------------------------------");
-  endfunction
-  
-  
-  
-endclass
+endclass	
