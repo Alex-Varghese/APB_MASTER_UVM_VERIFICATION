@@ -1,42 +1,7 @@
 class apb_master_coverage extends uvm_subscriber #(apb_master_seq_item);
   `uvm_component_utils(apb_master_coverage)
 
-	//Define the coverage group and bins
 	covergroup cg;
-	//Address range bins
-	coverpoint tr.PADDR{
-      bins addr_min = {[0:0]};
-  	  bins addr_max = {[32:32]};
-  	  bins addr_range = {[1:32]};
-  	  bins addr_invalid = {[32:$]};
-	  }
-
-	//Data width bins
-	coverpoint tr.PRDATA{
-      bins rdata_min = {[0:0]};
-	    bins rdata_max = {32'hFFFFFFFF};
-	    bins rdata_8bit_range = {[0:(2**8)-1]};
-	    bins rdata_16bit_range = {[(2**8):(2**16)-1]};
-      bins rdata_24bit_range = {[(2**16):(2**24)-1]};
-      bins rdata_32bit_range = {[(2**24):$]};
-	  }
-
-	coverpoint tr.PWDATA{
-      bins wdata_min = {[0:0]};
-	 	  bins wdata_max = {32'hFFFFFFFF};
-	  	bins wdata_8bit_range = {[0:(2**8)-1]};
-		  bins wdata_16bit_range = {[(2**8):(2**16)-1]};
-      bins wdata_24bit_range = {[(2**16):(2**24)-1]};
-      bins wdata_32bit_range = {[(2**24):$]};
-	  }
-
-
-	//	Read and Write bins
-	coverpoint tr.PWRITE{
-      bins write = {1};
-		  bins read  = {0};
-	  }
-
 	//Error condition bins
 	coverpoint tr.PSLVERR{
      bins pslverr_assert = {1};
@@ -48,19 +13,6 @@ class apb_master_coverage extends uvm_subscriber #(apb_master_seq_item);
      bins pready_assert = {1};
 	 	 bins pready_not_assert = {0};
 	 }
-
-
-	//Psel and Penable condition bins
-	coverpoint tr.PSEL{
-     bins psel_assert = {1};
-	 }
-	coverpoint tr.PENABLE{
-     bins penable_assert = {1};
-	 }
-
-	//Cross coverage 
-	cross  tr.PWRITE, tr.PENABLE;
-
   endgroup
 
   function new(string name ="apb_coverage_model", uvm_component parent);
