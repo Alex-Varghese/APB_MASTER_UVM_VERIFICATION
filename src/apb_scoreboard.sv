@@ -47,5 +47,7 @@ endclass
       wait(pass_mon_queue.size() > 0 && act_mon_queue.size()>0); 
       active_seq = pass_mon_queue.pop_front();
       passive_seq = act_mon_queue.pop_front();
+			active_seq.sprint_inputs("Scoreboard");
+			passive_seq.sprint_outputs("Scoreboard");
     end : forever_block
   endtask

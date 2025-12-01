@@ -25,12 +25,10 @@ endfunction : build_phase
 task apb_driver::run_phase(uvm_phase phase);
   forever begin : forever_b
     seq_item_port.get_next_item(req);
-		`uvm_info(get_type_name(),"---------- Started -------------",UVM_MEDIUM);
 		drive_inputs();
-	  req.print_inputs();
+	  req.sprint_inputs("Driver");
     seq_item_port.item_done();
     repeat(3)@(vif.drv_cb);
-		`uvm_info(get_type_name(),"---------- Ended -------------",UVM_MEDIUM);
   end : forever_b
 endtask : run_phase  
 

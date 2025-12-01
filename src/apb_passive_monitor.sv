@@ -29,22 +29,24 @@ endclass
 
 	task apb_passive_monitor::monitor_outputs();
     pass_req.psel = vif.psel;
-		//pass_req.pwdata = vif.pwdata;
+		pass_req.pwdata = vif.pwdata;
 		pass_req.penable = vif.penable;
 		pass_req.pwrite = vif.pwrite;
 		pass_req.pstrb = vif.pstrb;
     pass_req.paddr = vif.paddr;
-    //`uvm_info(get_type_name(), $sformatf("psel = %0d | pwrite = %0b | penable  =%0b | paddr = %0d | pwadta = %0d | pstrb = %0d",pass_req.psel,pass_req.pwrite,pass_req.penable,pass_req.paddr,pass_req.wdata,pass_req.pstrb),UVM_MEDIUM);
+		pass_req.transfer_done = vif.transfer_done;
+		pass_req.error = vif.error;
+		pass_req.rdata_out = vif.rdata_out;
+    pass_req.sprint_outputs("Passive Monitor");
     pass_mon_port.write(pass_req);
     pass_mon_cg_port.write(pass_req);
   endtask
 
   task apb_passive_monitor::run_phase(uvm_phase phase);
-    repeat(1)@(vif.pass_mon_cb);
+    repeat(4)@(vif.pass_mon_cb);
     forever begin
       pass_req = apb_master_seq_item::type_id::create("pass_req");
-      repeat(1)@(vif.pass_mon_cb);
       monitor_outputs();
-      repeat(2)@(vif.pass_mon_cb);
+      repeat(3)@(vif.pass_mon_cb);
     end
   endtask

@@ -59,6 +59,7 @@ task apb_base_test::run_phase(uvm_phase phase);
 	seq = apb_base_sequence::type_id::create("seq");
 	seq.start(env.act_agt.seqr);
   phase.drop_objection(this);
+  //phase.phase_done.set_drain_time(this,100);
 endtask : run_phase
 
 

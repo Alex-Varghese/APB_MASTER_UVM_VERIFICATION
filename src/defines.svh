@@ -1,4 +1,4 @@
-`define TXNS 100
+`define TXNS 3 
 `define SLAVES 1
 
 `define ADDR_WIDTH 8

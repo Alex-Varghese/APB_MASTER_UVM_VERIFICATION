@@ -37,15 +37,19 @@ class apb_master_seq_item extends uvm_sequence_item;
 	
 	// field automation macros and factory registeration	  
   `uvm_object_utils(apb_master_seq_item)
- 
+  
+
+				constraint val { if(psel && penable) pready == 1; presetn == 1; pslverr == 0; }	
 
 	//-------------------------------------------------------
 	// Externally defined Tasks and Functions
 	//-------------------------------------------------------	
   extern function new(string name = "apb_master_seq_item");
-  extern function void print_inputs();
-  extern function void print_outputs();
-  extern function void print_all();
+  extern function void print_inputs(string name);
+  extern function void sprint_inputs(string name);
+	extern function void sprint_outputs(string name);
+  extern function void print_outputs(string name);
+  extern function void print_all(string name);
   extern function string get_transaction_type();
 endclass
 
@@ -59,8 +63,8 @@ function string apb_master_seq_item::get_transaction_type();
   return (write_read == 1) ? "WRITE" : "READ";
 endfunction
 
-function void apb_master_seq_item::print_inputs();
-	$display("\n=== APB INPUTS ===");
+function void apb_master_seq_item::print_inputs(string name);
+	$display("\n=== %s @(%0t) ===",name,$time);
   $display("Type:          %s", get_transaction_type());
   $display("PRESETn:       %0d", presetn);
   $display("Transfer:      %0b", transfer);
@@ -76,9 +80,19 @@ function void apb_master_seq_item::print_inputs();
   $display("================================"); 
 endfunction
 
+function void apb_master_seq_item::sprint_inputs(string name);
+  $write("\n%s @(%0t) Type: %s | PRESETn: %0d | Transfer: %0b | Address: %0d | ", 
+         name,$time,get_transaction_type(), presetn, transfer, addr_in);
+  if(get_transaction_type() == "WRITE")
+    $write("WDATA: %0d | ", wdata_in);
+  else
+    $write("PRDATA: %0d | ", prdata);
+  $write("Strobe: %0b | Status: %s | Slave Ready: %0b | Slave Error: %0b \n", 
+         strb_in, (error ? "ERROR" : (transfer_done ? "COMPLETE" : "IN_PROGRESS")), pready, pslverr);
+endfunction
 
-function void apb_master_seq_item::print_outputs();
-	$display("\n=== APB INPUTS ===");
+function void apb_master_seq_item::print_outputs(string name);
+	$display("\n=== %s @(%0t) ===",name,$time);
   $display("Type:          %s", get_transaction_type());
   $display("Slave:         %0d", psel);
   $display("Address:       0x%0h", paddr);
@@ -91,9 +105,19 @@ function void apb_master_seq_item::print_outputs();
   $display("================================"); 
 endfunction
 
+function void apb_master_seq_item::sprint_outputs(string name);
+  $write("\n%s @(%0t) | Type: %s | Slave: %0d | Address: 0x%0h | ", 
+         name, $time, get_transaction_type(), psel, paddr);
+  if(get_transaction_type() == "WRITE")
+    $write("WDATA: 0x%0h | ", pwdata);
+  else
+    $write("PRDATA: 0x%0h | ", rdata_out);
+  $write("Strobe: 0x%0h | Status: %s |", 
+         pstrb, (error ? "ERROR" : (transfer_done ? "COMPLETE" : "IN_PROGRESS")));
+endfunction
 
-function void apb_master_seq_item::print_all();
-	$display("\n=== APB INPUTS ===");
+function void apb_master_seq_item::print_all(string name);
+	$display("\n=== %s @(%0t) ===",name,$time);
   $display("Type:          %s", get_transaction_type());
   $display("PRESETn:       %0d", presetn);
   $display("Transfer:      %0b", transfer);

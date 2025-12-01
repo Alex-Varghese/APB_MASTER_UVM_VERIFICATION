@@ -15,12 +15,12 @@ class apb_base_sequence extends uvm_sequence#(apb_master_seq_item);
   
   virtual task body();
     req = apb_master_seq_item::type_id::create("req");//creating seq_item
-      //repeat(`TXNS) begin
-        start_item(req);
-        assert(req.randomize());
-				//req.print_inputs();
-				finish_item(req);   
-			//end
+		`uvm_do_with(req, {presetn == 0;})
+		repeat(`TXNS) begin
+      start_item(req);
+      assert(req.randomize());
+		  finish_item(req);   
+	  end
   endtask
 endclass
 
