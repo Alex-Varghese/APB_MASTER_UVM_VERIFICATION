@@ -1,5 +1,5 @@
-# vsim -c top 
-# Start time: 16:34:41 on Dec 01,2025
+# vsim -c top -do "run -all;exit" 
+# Start time: 09:44:11 on Dec 03,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: top.sv(16): (vopt-2241) Connection width does not match width of port 'PSTRB'. The port definition is at: ../design/apb_master.sv(20).
 # //  Questa Sim
@@ -23,6 +23,7 @@
 # Loading work.top(fast)
 # Loading mtiUvm.questa_uvm_pkg(fast)
 # Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+# run -all
 # ----------------------------------------------------------------
 # UVM-1.1d
 # (C) 2007-2013 Mentor Graphics Corporation
@@ -46,32 +47,34 @@
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
 # UVM_INFO @ 0: reporter [RNTST] Running test apb_base_test...
+# UVM_WARNING apb_sequence.sv(18) @ 5: uvm_test_top.env.act_agt.seqr@@seq [RNDFLD] Randomization failed in uvm_do_with action
 # 
-# === APB INPUTS ===
-# Type:          READ
-# PRESETn:       1
-# Transfer:      1
-# Address:       0x76
-# PRDATA:     0x8863399d
-# Strobe:        0x8
-# Status:        IN_PROGRESS
-# Slave Ready:   1
-# Slave Error:   0
-# ================================
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 0: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# Driver @(15) Type: READ | PRESETn: 0 | Transfer: 0 | Address: 0 | PRDATA: 0 | Strobe: 0 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# 
+# Driver @(25) Type: WRITE | PRESETn: 1 | Transfer: 0 | Address: 218 | WDATA: 2856516151 | Strobe: 1010 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# 
+# Driver @(35) Type: WRITE | PRESETn: 1 | Transfer: 1 | Address: 214 | WDATA: 365382682 | Strobe: 110 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# 
+# Passive Monitor @(35) | Type: READ | Slave: 0 | Address: 0x0 | PRDATA: 0x0 | Strobe: 0x0 | Status: IN_PROGRESS |
+# Scoreboard @(35) Type: READ | PRESETn: 0 | Transfer: 0 | Address: 0 | PRDATA: 0 | Strobe: 0 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# 
+# Scoreboard @(35) | Type: READ | Slave: 0 | Address: 0x0 | PRDATA: 0x0 | Strobe: 0x0 | Status: IN_PROGRESS |
+# Driver @(45) Type: WRITE | PRESETn: 1 | Transfer: 0 | Address: 4 | WDATA: 2035487251 | Strobe: 10 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 45: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
 # UVM_INFO :    4
-# UVM_WARNING :    0
+# UVM_WARNING :    1
 # UVM_ERROR :    0
 # UVM_FATAL :    0
 # ** Report counts by id
 # [Questa UVM]     2
+# [RNDFLD]     1
 # [RNTST]     1
 # [TEST_DONE]     1
 # ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 0 ns  Iteration: 226  Instance: /top
-# End time: 16:34:44 on Dec 01,2025, Elapsed time: 0:00:03
+#    Time: 45 ns  Iteration: 63  Instance: /top
+# End time: 09:44:14 on Dec 03,2025, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 1

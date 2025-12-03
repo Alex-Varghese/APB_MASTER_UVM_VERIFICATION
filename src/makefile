@@ -8,7 +8,10 @@ cov:
 	vsim -vopt work.top -voptargs=+acc=npr -assertdebug -l simulation.log -coverage -c -do "coverage save -onexit -assert -directive -cvg -codeAll coverage.ucdb; run -all; exit"
 	vcover report -html coverage.ucdb -htmldir covReport -details
 
-s:  
+s:
+	clear
+	clear
+	vlog top.sv	
 	vsim -c top -do "run -all;exit"
 
 c:
