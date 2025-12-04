@@ -1,7 +1,0 @@
-var g_db_data = {
-'8':1,
-'1118':1,
-'4':1,
-'dummyEnd':1
-};
-processScopesDbFile(g_db_data);

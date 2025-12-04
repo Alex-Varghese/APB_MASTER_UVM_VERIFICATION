@@ -23,11 +23,10 @@ function void apb_driver::build_phase(uvm_phase phase);
 endfunction : build_phase
 
 task apb_driver::run_phase(uvm_phase phase);
-  repeat(1)@(posedge vif.drv_cb);
+  repeat(2)@(posedge vif.drv_cb);
   forever begin : forever_b
     seq_item_port.get_next_item(req);
 		drive_inputs();
-	  req.sprint_inputs("Driver");
     seq_item_port.item_done();
   end : forever_b
 endtask : run_phase  
@@ -42,5 +41,6 @@ task apb_driver::drive_inputs();
 	vif.transfer <= req.transfer;
 	vif.write_read <= req.write_read;
 	vif.strb_in <= req.strb_in;
+	req.sprint_inputs("Driver");
 	repeat(1)@(posedge vif.drv_cb);
 endtask : drive_inputs

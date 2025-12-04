@@ -44,10 +44,10 @@ endclass
     apb_master_seq_item active_seq;
     apb_master_seq_item passive_seq;
     forever begin : forever_block
-      wait(pass_mon_queue.size() > 0 && act_mon_queue.size()>0); 
+      wait(pass_mon_queue.size() > 1 && act_mon_queue.size() > 1); 
       active_seq = pass_mon_queue.pop_front();
       passive_seq = act_mon_queue.pop_front();
-			active_seq.sprint_inputs("Scoreboard");
-			passive_seq.sprint_outputs("Scoreboard");
+
+			//active_seq.print_all("Scoreboard",passive_seq);
     end : forever_block
   endtask

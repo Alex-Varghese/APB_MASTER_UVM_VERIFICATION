@@ -1,6 +1,6 @@
 # vsim -c top -do "run -all;exit" 
-# Start time: 09:44:11 on Dec 03,2025
-# ** Note: (vsim-3812) Design is being optimized...
+# Start time: 15:31:40 on Dec 04,2025
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # ** Warning: top.sv(16): (vopt-2241) Connection width does not match width of port 'PSTRB'. The port definition is at: ../design/apb_master.sv(20).
 # //  Questa Sim
 # //  Version 10.6c linux Jul 25 2017
@@ -47,34 +47,236 @@
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
 # UVM_INFO @ 0: reporter [RNTST] Running test apb_base_test...
-# UVM_WARNING apb_sequence.sv(18) @ 5: uvm_test_top.env.act_agt.seqr@@seq [RNDFLD] Randomization failed in uvm_do_with action
 # 
-# Driver @(15) Type: READ | PRESETn: 0 | Transfer: 0 | Address: 0 | PRDATA: 0 | Strobe: 0 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# Active Monitor @(15) Type: READ
+# 		presetn = 0 | transfer = 0 
+# 		addr_in = 0 | wdata_in = 0 | prdata = 0  
+# 		strb_in = 0 | pready = 0 | pslverr = 0
+# ***********************************************************************
 # 
-# Driver @(25) Type: WRITE | PRESETn: 1 | Transfer: 0 | Address: 218 | WDATA: 2856516151 | Strobe: 1010 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# Passive Monitor @(15) : Type : READ
+# 		psel = 0 | pwrite = READ
+# 		paddr = 0 | pwdata = 0 | rdata_out = 0
 # 
-# Driver @(35) Type: WRITE | PRESETn: 1 | Transfer: 1 | Address: 214 | WDATA: 365382682 | Strobe: 110 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
 # 
-# Passive Monitor @(35) | Type: READ | Slave: 0 | Address: 0x0 | PRDATA: 0x0 | Strobe: 0x0 | Status: IN_PROGRESS |
-# Scoreboard @(35) Type: READ | PRESETn: 0 | Transfer: 0 | Address: 0 | PRDATA: 0 | Strobe: 0 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
+# ***********************************************************************
 # 
-# Scoreboard @(35) | Type: READ | Slave: 0 | Address: 0x0 | PRDATA: 0x0 | Strobe: 0x0 | Status: IN_PROGRESS |
-# Driver @(45) Type: WRITE | PRESETn: 1 | Transfer: 0 | Address: 4 | WDATA: 2035487251 | Strobe: 10 | Status: IN_PROGRESS | Slave Ready: 0 | Slave Error: 0 
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 45: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# 
+# Driver @(15) Type: READ
+# 		presetn = 1 | transfer = 0 
+# 		addr_in = 73 | wdata_in = 0 | prdata = 611  
+# 		strb_in = 1111 | pready = 0 | pslverr = 0
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(25) Type: READ
+# 		presetn = 1 | transfer = 0 
+# 		addr_in = 73 | wdata_in = 0 | prdata = 611  
+# 		strb_in = 1111 | pready = 0 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(25) : Type : READ
+# 		psel = 0 | pwrite = READ
+# 		paddr = 0 | pwdata = 0 | rdata_out = 0
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# 
+# Driver @(25) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 821  
+# 		strb_in = 110 | pready = 0 | pslverr = 0
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(35) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 821  
+# 		strb_in = 110 | pready = 0 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(35) : Type : READ
+# 		psel = 0 | pwrite = READ
+# 		paddr = 0 | pwdata = 0 | rdata_out = 0
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# 
+# Driver @(35) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(45) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(45) : Type : READ
+# 		psel = 1 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 0
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(55) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(55) : Type : READ
+# 		psel = 1 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 1
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(65) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(65) : Type : READ
+# 		psel = 0 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(75) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(75) : Type : READ
+# 		psel = 1 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(85) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(85) : Type : READ
+# 		psel = 1 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 1
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(95) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(95) : Type : READ
+# 		psel = 0 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(105) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(105) : Type : READ
+# 		psel = 1 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(115) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(115) : Type : READ
+# 		psel = 1 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 1
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(125) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(125) : Type : READ
+# 		psel = 0 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# 
+# Active Monitor @(135) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
+# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive Monitor @(135) : Type : READ
+# 		psel = 1 | pwrite = READ
+# 		paddr = 195 | pwdata = 0 | rdata_out = 98
+# 
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 145: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
 # UVM_INFO :    4
-# UVM_WARNING :    1
+# UVM_WARNING :    0
 # UVM_ERROR :    0
 # UVM_FATAL :    0
 # ** Report counts by id
 # [Questa UVM]     2
-# [RNDFLD]     1
 # [RNTST]     1
 # [TEST_DONE]     1
 # ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 45 ns  Iteration: 63  Instance: /top
-# End time: 09:44:14 on Dec 03,2025, Elapsed time: 0:00:03
+#    Time: 145 ns  Iteration: 53  Instance: /top
+# End time: 15:31:43 on Dec 04,2025, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 1

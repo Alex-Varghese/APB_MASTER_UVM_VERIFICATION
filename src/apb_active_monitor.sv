@@ -27,17 +27,21 @@ endclass
   endfunction
 
   task apb_active_monitor::monitor_inputs();  
-    act_req.prdata = vif.prdata;
+		act_req.transfer = vif.transfer;
+		act_req.wdata_in = vif.wdata_in;
+		act_req.addr_in = vif.addr_in;
+		act_req.strb_in = vif.strb_in;
+		act_req.prdata = vif.prdata;
     act_req.pready = vif.pready;
     act_req.presetn = vif.presetn;
 		act_req.pslverr = vif.pslverr;
     act_mon_port.write(act_req);
-		//act_req.print_inputs("Active Monitor");
+		act_req.sprint_inputs("Active Monitor");
     //act_mon_cg_port.write(act_req);
   endtask
 
   task apb_active_monitor::run_phase(uvm_phase phase);
-    repeat(1)@(vif.act_mon_cb);
+    repeat(2)@(vif.act_mon_cb);
     forever begin
       act_req = apb_master_seq_item::type_id::create("act_req");
       monitor_inputs();
