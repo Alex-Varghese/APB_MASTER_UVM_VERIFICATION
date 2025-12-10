@@ -37,14 +37,13 @@ endclass
 		pass_req.transfer_done = vif.transfer_done;
 		pass_req.error = vif.error;
 		pass_req.rdata_out = vif.rdata_out;
-    pass_req.sprint_outputs("Passive Monitor");
     pass_mon_port.write(pass_req);
     pass_mon_cg_port.write(pass_req);
     repeat(1)@(vif.pass_mon_cb);
   endtask
 
   task apb_passive_monitor::run_phase(uvm_phase phase);
-    repeat(2)@(vif.pass_mon_cb);
+    repeat(1)@(vif.pass_mon_cb);
     forever begin
       pass_req = apb_master_seq_item::type_id::create("pass_req");
       monitor_outputs();

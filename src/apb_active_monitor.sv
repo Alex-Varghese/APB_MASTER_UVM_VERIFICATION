@@ -36,12 +36,11 @@ endclass
     act_req.presetn = vif.presetn;
 		act_req.pslverr = vif.pslverr;
     act_mon_port.write(act_req);
-		act_req.sprint_inputs("Active Monitor");
     //act_mon_cg_port.write(act_req);
   endtask
 
   task apb_active_monitor::run_phase(uvm_phase phase);
-    repeat(2)@(vif.act_mon_cb);
+    repeat(1)@(vif.act_mon_cb);
     forever begin
       act_req = apb_master_seq_item::type_id::create("act_req");
       monitor_inputs();

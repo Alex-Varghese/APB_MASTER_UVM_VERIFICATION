@@ -3,7 +3,9 @@ package apb_pkg;
   `include "defines.svh"
 	`include "uvm_macros.svh"
   `include "apb_master_seq_item.sv"
-  `include "apb_sequence.sv"
+
+  `include "../sequences/apb_base_sequence.sv"
+
   `include "apb_sequencer.sv"
   `include "apb_driver.sv"
   `include "apb_active_monitor.sv"
@@ -12,5 +14,7 @@ package apb_pkg;
   `include "apb_scoreboard.sv"
   //`include "../apb_coverage.sv"
   `include "apb_environment.sv"
-  `include "apb_test.sv"
+
+  `include "../tests/apb_base_test.sv"
+
 endpackage

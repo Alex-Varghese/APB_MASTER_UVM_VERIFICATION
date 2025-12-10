@@ -1,7 +1,6 @@
 # vsim -c top -do "run -all;exit" 
-# Start time: 15:31:40 on Dec 04,2025
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: top.sv(16): (vopt-2241) Connection width does not match width of port 'PSTRB'. The port definition is at: ../design/apb_master.sv(20).
+# Start time: 11:33:03 on Dec 10,2025
+# ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim
 # //  Version 10.6c linux Jul 25 2017
 # //
@@ -48,235 +47,328 @@
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
 # UVM_INFO @ 0: reporter [RNTST] Running test apb_base_test...
 # 
-# Active Monitor @(15) Type: READ
+# Driver @(5) Type: READ
 # 		presetn = 0 | transfer = 0 
 # 		addr_in = 0 | wdata_in = 0 | prdata = 0  
 # 		strb_in = 0 | pready = 0 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(15) : Type : READ
+# Passive_Monitor @(5) : Type : READ
 # 		psel = 0 | pwrite = READ
 # 		paddr = 0 | pwdata = 0 | rdata_out = 0
-# 
 # 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
+# UVM_INFO apb_scoreboard.sv(104) @ 5: uvm_test_top.env.scb [SCB_PASS] State: IDLE | Reset: 0 | PSEL Exp/Act: 0/0 | PENABLE Exp/Act: 0/0
 # 
 # Driver @(15) Type: READ
-# 		presetn = 1 | transfer = 0 
-# 		addr_in = 73 | wdata_in = 0 | prdata = 611  
-# 		strb_in = 1111 | pready = 0 | pslverr = 0
+# 		presetn = 0 | transfer = 0 
+# 		addr_in = 72 | wdata_in = 386 | prdata = 0  
+# 		strb_in = 1011 | pready = 0 | pslverr = 0
 # ***********************************************************************
 # 
-# 
-# Active Monitor @(25) Type: READ
-# 		presetn = 1 | transfer = 0 
-# 		addr_in = 73 | wdata_in = 0 | prdata = 611  
-# 		strb_in = 1111 | pready = 0 | pslverr = 0
-# ***********************************************************************
-# 
-# Passive Monitor @(25) : Type : READ
+# Passive_Monitor @(15) : Type : READ
 # 		psel = 0 | pwrite = READ
 # 		paddr = 0 | pwdata = 0 | rdata_out = 0
-# 
 # 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
+# UVM_INFO apb_scoreboard.sv(104) @ 15: uvm_test_top.env.scb [SCB_PASS] State: IDLE | Reset: 0 | PSEL Exp/Act: 0/0 | PENABLE Exp/Act: 0/0
 # 
 # Driver @(25) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 821  
-# 		strb_in = 110 | pready = 0 | pslverr = 0
+# 		addr_in = 181 | wdata_in = 836 | prdata = 0  
+# 		strb_in = 11 | pready = 0 | pslverr = 0
 # ***********************************************************************
 # 
-# 
-# Active Monitor @(35) Type: READ
-# 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 821  
-# 		strb_in = 110 | pready = 0 | pslverr = 0
-# ***********************************************************************
-# 
-# Passive Monitor @(35) : Type : READ
-# 		psel = 0 | pwrite = READ
+# Passive_Monitor @(25) : Type : READ
+# 		psel = 1 | pwrite = READ
 # 		paddr = 0 | pwdata = 0 | rdata_out = 0
-# 
 # 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
+# UVM_ERROR apb_scoreboard.sv(100) @ 25: uvm_test_top.env.scb [SCB_FAIL] State: IDLE | Reset: 1 | PSEL Exp/Act: 0/1 | PENABLE Exp/Act: 0/0
 # 
 # Driver @(35) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 181 | wdata_in = 836 | prdata = 0  
+# 		strb_in = 11 | pready = 0 | pslverr = 0
 # ***********************************************************************
 # 
-# 
-# Active Monitor @(45) Type: READ
-# 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
-# ***********************************************************************
-# 
-# Passive Monitor @(45) : Type : READ
+# Passive_Monitor @(35) : Type : READ
 # 		psel = 1 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 0
-# 
-# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# 		paddr = 0 | pwdata = 0 | rdata_out = 0
+# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
+# UVM_ERROR apb_scoreboard.sv(100) @ 35: uvm_test_top.env.scb [SCB_FAIL] State: SETUP | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 0/1
+# UVM_ERROR apb_scoreboard.sv(110) @ 35: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 181 | Act = 0
+# UVM_INFO apb_scoreboard.sv(118) @ 35: uvm_test_top.env.scb [SCB_PWRITE] pwrite matching: Exp = 0 | Act = 0
+# UVM_INFO apb_scoreboard.sv(130) @ 35: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
 # 
-# Active Monitor @(55) Type: READ
+# Driver @(45) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 181 | wdata_in = 836 | prdata = 0  
+# 		strb_in = 11 | pready = 1 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(55) : Type : READ
-# 		psel = 1 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 1
+# Passive_Monitor @(45) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 181 | pwdata = 836 | rdata_out = 0
+# 		penable = 0 | pstrb = 1 | error = 0 | transfer_done = 1
 # 
 # ***********************************************************************
 # 
+# UVM_ERROR apb_scoreboard.sv(100) @ 45: uvm_test_top.env.scb [SCB_FAIL] State: ACCESS | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 1/0
+# UVM_INFO apb_scoreboard.sv(112) @ 45: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 181 | Act = 181
+# UVM_ERROR apb_scoreboard.sv(116) @ 45: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 45: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
 # 
-# Active Monitor @(65) Type: READ
+# Driver @(55) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 0 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(65) : Type : READ
-# 		psel = 0 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# Passive_Monitor @(55) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 181 | pwdata = 836 | rdata_out = 0
+# 		penable = 1 | pstrb = 1 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
+# UVM_ERROR apb_scoreboard.sv(100) @ 55: uvm_test_top.env.scb [SCB_FAIL] State: IDLE | Reset: 1 | PSEL Exp/Act: 0/1 | PENABLE Exp/Act: 0/1
 # 
-# Active Monitor @(75) Type: READ
+# Driver @(65) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 0 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(75) : Type : READ
-# 		psel = 1 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# Passive_Monitor @(65) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 181 | pwdata = 836 | rdata_out = 0
+# 		penable = 1 | pstrb = 1 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
+# UVM_ERROR apb_scoreboard.sv(100) @ 65: uvm_test_top.env.scb [SCB_FAIL] State: SETUP | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 0/1
+# UVM_ERROR apb_scoreboard.sv(110) @ 65: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 148 | Act = 181
+# UVM_ERROR apb_scoreboard.sv(116) @ 65: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 65: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
 # 
-# Active Monitor @(85) Type: READ
+# Driver @(75) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(85) : Type : READ
-# 		psel = 1 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 1
+# Passive_Monitor @(75) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 181 | pwdata = 836 | rdata_out = 0
+# 		penable = 0 | pstrb = 1 | error = 0 | transfer_done = 1
 # 
 # ***********************************************************************
 # 
+# UVM_ERROR apb_scoreboard.sv(100) @ 75: uvm_test_top.env.scb [SCB_FAIL] State: ACCESS | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 1/0
+# UVM_ERROR apb_scoreboard.sv(110) @ 75: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 148 | Act = 181
+# UVM_ERROR apb_scoreboard.sv(116) @ 75: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 75: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
 # 
-# Active Monitor @(95) Type: READ
+# Driver @(85) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(95) : Type : READ
-# 		psel = 0 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# Passive_Monitor @(85) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 181 | pwdata = 836 | rdata_out = 0
+# 		penable = 1 | pstrb = 1 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
+# UVM_ERROR apb_scoreboard.sv(100) @ 85: uvm_test_top.env.scb [SCB_FAIL] State: IDLE | Reset: 1 | PSEL Exp/Act: 0/1 | PENABLE Exp/Act: 0/1
 # 
-# Active Monitor @(105) Type: READ
+# Driver @(95) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(105) : Type : READ
-# 		psel = 1 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# Passive_Monitor @(95) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 1
 # 
 # ***********************************************************************
 # 
+# UVM_INFO apb_scoreboard.sv(104) @ 95: uvm_test_top.env.scb [SCB_PASS] State: SETUP | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 0/0
+# UVM_INFO apb_scoreboard.sv(112) @ 95: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 148 | Act = 148
+# UVM_ERROR apb_scoreboard.sv(116) @ 95: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 95: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
 # 
-# Active Monitor @(115) Type: READ
+# Driver @(105) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(115) : Type : READ
-# 		psel = 1 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 1
+# Passive_Monitor @(105) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
+# UVM_INFO apb_scoreboard.sv(104) @ 105: uvm_test_top.env.scb [SCB_PASS] State: ACCESS | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 1/1
+# UVM_INFO apb_scoreboard.sv(112) @ 105: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 148 | Act = 148
+# UVM_ERROR apb_scoreboard.sv(116) @ 105: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 105: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
 # 
-# Active Monitor @(125) Type: READ
+# Driver @(115) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(125) : Type : READ
-# 		psel = 0 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# Passive_Monitor @(115) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 1
 # 
 # ***********************************************************************
 # 
+# UVM_ERROR apb_scoreboard.sv(100) @ 115: uvm_test_top.env.scb [SCB_FAIL] State: IDLE | Reset: 1 | PSEL Exp/Act: 0/1 | PENABLE Exp/Act: 0/0
 # 
-# Active Monitor @(135) Type: READ
+# Driver @(125) Type: READ
 # 		presetn = 1 | transfer = 1 
-# 		addr_in = 195 | wdata_in = 0 | prdata = 98  
-# 		strb_in = 1000 | pready = 1 | pslverr = 0
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
 # ***********************************************************************
 # 
-# Passive Monitor @(135) : Type : READ
-# 		psel = 1 | pwrite = READ
-# 		paddr = 195 | pwdata = 0 | rdata_out = 98
-# 
-# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 0
+# Passive_Monitor @(125) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 0
 # 
 # ***********************************************************************
 # 
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 145: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_ERROR apb_scoreboard.sv(100) @ 125: uvm_test_top.env.scb [SCB_FAIL] State: SETUP | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 0/1
+# UVM_INFO apb_scoreboard.sv(112) @ 125: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 148 | Act = 148
+# UVM_ERROR apb_scoreboard.sv(116) @ 125: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 125: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
+# 
+# Driver @(135) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive_Monitor @(135) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 1
+# 
+# ***********************************************************************
+# 
+# UVM_ERROR apb_scoreboard.sv(100) @ 135: uvm_test_top.env.scb [SCB_FAIL] State: ACCESS | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 1/0
+# UVM_INFO apb_scoreboard.sv(112) @ 135: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 148 | Act = 148
+# UVM_ERROR apb_scoreboard.sv(116) @ 135: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 135: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
+# 
+# Driver @(145) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive_Monitor @(145) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# UVM_ERROR apb_scoreboard.sv(100) @ 145: uvm_test_top.env.scb [SCB_FAIL] State: IDLE | Reset: 1 | PSEL Exp/Act: 0/1 | PENABLE Exp/Act: 0/1
+# 
+# Driver @(155) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive_Monitor @(155) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 1
+# 
+# ***********************************************************************
+# 
+# UVM_INFO apb_scoreboard.sv(104) @ 155: uvm_test_top.env.scb [SCB_PASS] State: SETUP | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 0/0
+# UVM_INFO apb_scoreboard.sv(112) @ 155: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 148 | Act = 148
+# UVM_ERROR apb_scoreboard.sv(116) @ 155: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 155: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
+# 
+# Driver @(165) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive_Monitor @(165) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 1 | pstrb = 0 | error = 0 | transfer_done = 0
+# 
+# ***********************************************************************
+# 
+# UVM_INFO apb_scoreboard.sv(104) @ 165: uvm_test_top.env.scb [SCB_PASS] State: ACCESS | Reset: 1 | PSEL Exp/Act: 1/1 | PENABLE Exp/Act: 1/1
+# UVM_INFO apb_scoreboard.sv(112) @ 165: uvm_test_top.env.scb [SCB_ADDR] Addr matching: Exp = 148 | Act = 148
+# UVM_ERROR apb_scoreboard.sv(116) @ 165: uvm_test_top.env.scb [SCB_WR] Write/Read Mismatch
+# UVM_INFO apb_scoreboard.sv(130) @ 165: uvm_test_top.env.scb [SCB_PRDATA] RData match : Exp = 0 | Act = 0
+# 
+# Driver @(175) Type: READ
+# 		presetn = 1 | transfer = 1 
+# 		addr_in = 148 | wdata_in = 477 | prdata = 0  
+# 		strb_in = 10 | pready = 1 | pslverr = 0
+# ***********************************************************************
+# 
+# Passive_Monitor @(175) : Type : WRITE
+# 		psel = 1 | pwrite = WRITE
+# 		paddr = 148 | pwdata = 477 | rdata_out = 0
+# 		penable = 0 | pstrb = 0 | error = 0 | transfer_done = 1
+# 
+# ***********************************************************************
+# 
+# UVM_ERROR apb_scoreboard.sv(100) @ 175: uvm_test_top.env.scb [SCB_FAIL] State: IDLE | Reset: 1 | PSEL Exp/Act: 0/1 | PENABLE Exp/Act: 0/0
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 185: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO apb_scoreboard.sv(167) @ 185: uvm_test_top.env.scb [SCB_SUMMARY] TOTAL TRANSACTION : 18
+# UVM_ERROR apb_scoreboard.sv(173) @ 185: uvm_test_top.env.scb [SCB_SUMMARY] TEST FAILED: 12 Mismatches Found
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :    4
+# UVM_INFO :   29
 # UVM_WARNING :    0
-# UVM_ERROR :    0
+# UVM_ERROR :   25
 # UVM_FATAL :    0
 # ** Report counts by id
 # [Questa UVM]     2
 # [RNTST]     1
+# [SCB_ADDR]    10
+# [SCB_FAIL]    12
+# [SCB_PASS]     6
+# [SCB_PRDATA]    10
+# [SCB_PWRITE]     1
+# [SCB_SUMMARY]     2
+# [SCB_WR]     9
 # [TEST_DONE]     1
 # ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 145 ns  Iteration: 53  Instance: /top
-# End time: 15:31:43 on Dec 04,2025, Elapsed time: 0:00:03
-# Errors: 0, Warnings: 1
+#    Time: 185 ns  Iteration: 53  Instance: /top
+# End time: 11:33:04 on Dec 10,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

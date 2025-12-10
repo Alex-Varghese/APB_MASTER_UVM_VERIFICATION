@@ -1,7 +1,8 @@
 `include "uvm_macros.svh"
 `include "apb_interface.sv"
 `include "apb_pkg.sv"
-`include "../design/apb_master.sv"
+`include "../design/apb_master_Version_2.sv"
+//`include "../design/apb_master_Version_1.sv"
 
 module top;
   import uvm_pkg::*;
