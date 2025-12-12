@@ -5,6 +5,7 @@ package apb_pkg;
   `include "apb_master_seq_item.sv"
 
   `include "../sequences/apb_base_sequence.sv"
+	`include "apb_report_server.sv"
 
   `include "apb_sequencer.sv"
   `include "apb_driver.sv"
